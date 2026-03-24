@@ -1,0 +1,54 @@
+{
+  "project_info": {
+    "project_number": "831277688805",
+    "project_id": "agatha-g1",
+    "storage_bucket": "agatha-g1.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:831277688805:android:f1230cd0aef5cd9184310c",
+        "android_client_info": {
+          "package_name": "com.agatha.agathasshoppingapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "831277688805-0la9qcmpblhc0ofo1ilmgomuoi3noe95.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.agatha.agathasshoppingapp",
+            "certificate_hash": "9bbb3186b2189ef16d8f272bdab59362c395cbb4"
+          }
+        },
+        {
+          "client_id": "831277688805-g9iatmhdlvkphd59u4inbpd30ueqg9hf.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBR1p9myvFEZqt9OhxsPiJZTGHBb1u1o_w"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "831277688805-g9iatmhdlvkphd59u4inbpd30ueqg9hf.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "831277688805-9ttn5dpt4pirqbvubsat1p4bn86hvcna.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.agatha.agathasshoppingapp"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
