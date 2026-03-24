@@ -326,14 +326,7 @@ class _PedidosActivosWidgetState extends State<PedidosActivosWidget> {
                               highlightColor: Colors.transparent,
                               onTap: () async {
                                 context.pushNamed(
-                                  InicioWidget.routeName,
-                                  queryParameters: {
-                                    'estado': serializeParam(
-                                      '',
-                                      ParamType.String,
-                                    ),
-                                  }.withoutNulls,
-                                );
+                                    VerificacionDeRolWidget.routeName);
                               },
                               child: Container(
                                 width: double.infinity,
@@ -343,51 +336,27 @@ class _PedidosActivosWidgetState extends State<PedidosActivosWidget> {
                                 ),
                                 child: Padding(
                                   padding: EdgeInsets.all(8.0),
-                                  child: InkWell(
-                                    splashColor: Colors.transparent,
-                                    focusColor: Colors.transparent,
-                                    hoverColor: Colors.transparent,
-                                    highlightColor: Colors.transparent,
-                                    onTap: () async {
-                                      if (scaffoldKey
-                                              .currentState!.isDrawerOpen ||
-                                          scaffoldKey
-                                              .currentState!.isEndDrawerOpen) {
-                                        Navigator.pop(context);
-                                      }
-                                    },
-                                    child: Row(
-                                      mainAxisSize: MainAxisSize.max,
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.center,
-                                      children: [
-                                        Icon(
-                                          Icons.home,
-                                          color: FlutterFlowTheme.of(context)
-                                              .primary,
-                                          size: 28.0,
-                                        ),
-                                        Padding(
-                                          padding:
-                                              EdgeInsetsDirectional.fromSTEB(
-                                                  12.0, 0.0, 0.0, 0.0),
-                                          child: Text(
-                                            'Inicio',
-                                            style: FlutterFlowTheme.of(context)
-                                                .bodyLarge
-                                                .override(
-                                                  font: GoogleFonts
-                                                      .plusJakartaSans(
-                                                    fontWeight: FontWeight.w500,
-                                                    fontStyle:
-                                                        FlutterFlowTheme.of(
-                                                                context)
-                                                            .bodyLarge
-                                                            .fontStyle,
-                                                  ),
-                                                  color: Color(0xFF15161E),
-                                                  fontSize: 16.0,
-                                                  letterSpacing: 0.0,
+                                  child: Row(
+                                    mainAxisSize: MainAxisSize.max,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.center,
+                                    children: [
+                                      Icon(
+                                        Icons.home,
+                                        color: FlutterFlowTheme.of(context)
+                                            .primary,
+                                        size: 28.0,
+                                      ),
+                                      Padding(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                            12.0, 0.0, 0.0, 0.0),
+                                        child: Text(
+                                          'Inicio',
+                                          style: FlutterFlowTheme.of(context)
+                                              .bodyLarge
+                                              .override(
+                                                font:
+                                                    GoogleFonts.plusJakartaSans(
                                                   fontWeight: FontWeight.w500,
                                                   fontStyle:
                                                       FlutterFlowTheme.of(
@@ -395,10 +364,18 @@ class _PedidosActivosWidgetState extends State<PedidosActivosWidget> {
                                                           .bodyLarge
                                                           .fontStyle,
                                                 ),
-                                          ),
+                                                color: Color(0xFF15161E),
+                                                fontSize: 16.0,
+                                                letterSpacing: 0.0,
+                                                fontWeight: FontWeight.w500,
+                                                fontStyle:
+                                                    FlutterFlowTheme.of(context)
+                                                        .bodyLarge
+                                                        .fontStyle,
+                                              ),
                                         ),
-                                      ],
-                                    ),
+                                      ),
+                                    ],
                                   ),
                                 ),
                               ),
@@ -1136,7 +1113,8 @@ class _PedidosActivosWidgetState extends State<PedidosActivosWidget> {
                                                                   text: valueOrDefault<
                                                                       String>(
                                                                     staggeredViewPedidosRecord
-                                                                        .pedidoId,
+                                                                        .reference
+                                                                        .id,
                                                                     'Sin Numero de Orden',
                                                                   ),
                                                                   style:

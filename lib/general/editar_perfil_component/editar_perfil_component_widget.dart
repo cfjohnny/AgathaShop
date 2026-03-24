@@ -55,12 +55,12 @@ class _EditarPerfilComponentWidgetState
     ));
     _model.txtNombreFocusNode2 ??= FocusNode();
 
-    _model.txtNumeroTextController ??= TextEditingController(
+    _model.txtNombreTextController3 ??= TextEditingController(
         text: valueOrDefault<String>(
       currentPhoneNumber,
-      'Sin Numero de Teléfono',
+      'Sin Número de Teléfono',
     ));
-    _model.txtNumeroFocusNode ??= FocusNode();
+    _model.txtNombreFocusNode3 ??= FocusNode();
   }
 
   @override
@@ -283,10 +283,10 @@ class _EditarPerfilComponentWidgetState
                                   focusNode: _model.txtEmailFocusNode,
                                   autofocus: false,
                                   enabled: true,
-                                  readOnly: true,
                                   obscureText: false,
                                   decoration: InputDecoration(
                                     isDense: true,
+                                    labelText: 'Email',
                                     labelStyle: FlutterFlowTheme.of(context)
                                         .labelMedium
                                         .override(
@@ -310,7 +310,6 @@ class _EditarPerfilComponentWidgetState
                                                   .labelMedium
                                                   .fontStyle,
                                         ),
-                                    hintText: 'TextField',
                                     hintStyle: FlutterFlowTheme.of(context)
                                         .labelMedium
                                         .override(
@@ -420,6 +419,7 @@ class _EditarPerfilComponentWidgetState
                                     obscureText: false,
                                     decoration: InputDecoration(
                                       isDense: true,
+                                      labelText: 'Nombre',
                                       labelStyle: FlutterFlowTheme.of(context)
                                           .labelMedium
                                           .override(
@@ -560,6 +560,7 @@ class _EditarPerfilComponentWidgetState
                                     obscureText: false,
                                     decoration: InputDecoration(
                                       isDense: true,
+                                      labelText: 'Dirección',
                                       labelStyle: FlutterFlowTheme.of(context)
                                           .labelMedium
                                           .override(
@@ -583,7 +584,6 @@ class _EditarPerfilComponentWidgetState
                                                     .labelMedium
                                                     .fontStyle,
                                           ),
-                                      hintText: 'TextField',
                                       hintStyle: FlutterFlowTheme.of(context)
                                           .labelMedium
                                           .override(
@@ -693,13 +693,14 @@ class _EditarPerfilComponentWidgetState
                                 builder: (context) => Container(
                                   width: 200.0,
                                   child: TextFormField(
-                                    controller: _model.txtNumeroTextController,
-                                    focusNode: _model.txtNumeroFocusNode,
+                                    controller: _model.txtNombreTextController3,
+                                    focusNode: _model.txtNombreFocusNode3,
                                     autofocus: false,
                                     enabled: true,
                                     obscureText: false,
                                     decoration: InputDecoration(
                                       isDense: true,
+                                      labelText: 'Dirección',
                                       labelStyle: FlutterFlowTheme.of(context)
                                           .labelMedium
                                           .override(
@@ -723,7 +724,6 @@ class _EditarPerfilComponentWidgetState
                                                     .labelMedium
                                                     .fontStyle,
                                           ),
-                                      hintText: 'TextField',
                                       hintStyle: FlutterFlowTheme.of(context)
                                           .labelMedium
                                           .override(
@@ -813,7 +813,7 @@ class _EditarPerfilComponentWidgetState
                                         .primaryText,
                                     enableInteractiveSelection: true,
                                     validator: _model
-                                        .txtNumeroTextControllerValidator
+                                        .txtNombreTextController3Validator
                                         .asValidator(context),
                                   ),
                                 ),
@@ -891,12 +891,10 @@ class _EditarPerfilComponentWidgetState
                                           ),
                                     'https://firebasestorage.googleapis.com/v0/b/agatha-g1.firebasestorage.app/o/imagenes%2FLogoAgatha.png?alt=media&token=45db8318-d2e6-4a05-a354-7eaa3170bc02',
                                   ),
-                                  phoneNumber: valueOrDefault<String>(
-                                    currentPhoneNumber,
-                                    'Sin Número de Teléfono',
-                                  ),
+                                  phoneNumber:
+                                      _model.txtNombreTextController3.text,
                                   direccion:
-                                      _model.txtNombreTextController2.text,
+                                      _model.txtNombreTextController3.text,
                                 ));
                                 await showDialog(
                                   context: context,

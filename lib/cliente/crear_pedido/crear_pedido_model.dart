@@ -8,18 +8,14 @@ class CrearPedidoModel extends FlutterFlowModel<CrearPedidoWidget> {
   ///  State fields for stateful widgets in this page.
 
   final formKey = GlobalKey<FormState>();
-  // State field(s) for productName widget.
-  FocusNode? productNameFocusNode;
-  TextEditingController? productNameTextController;
-  String? Function(BuildContext, String?)? productNameTextControllerValidator;
-  // State field(s) for description widget.
-  FocusNode? descriptionFocusNode1;
-  TextEditingController? descriptionTextController1;
-  String? Function(BuildContext, String?)? descriptionTextController1Validator;
-  // State field(s) for description widget.
-  FocusNode? descriptionFocusNode2;
-  TextEditingController? descriptionTextController2;
-  String? Function(BuildContext, String?)? descriptionTextController2Validator;
+  // State field(s) for link widget.
+  FocusNode? linkFocusNode;
+  TextEditingController? linkTextController;
+  String? Function(BuildContext, String?)? linkTextControllerValidator;
+  // State field(s) for cantidad widget.
+  FocusNode? cantidadFocusNode;
+  TextEditingController? cantidadTextController;
+  String? Function(BuildContext, String?)? cantidadTextControllerValidator;
   // State field(s) for ChoiceChips widget.
   FormFieldController<List<String>>? choiceChipsValueController;
   String? get choiceChipsValue =>
@@ -32,13 +28,10 @@ class CrearPedidoModel extends FlutterFlowModel<CrearPedidoWidget> {
 
   @override
   void dispose() {
-    productNameFocusNode?.dispose();
-    productNameTextController?.dispose();
+    linkFocusNode?.dispose();
+    linkTextController?.dispose();
 
-    descriptionFocusNode1?.dispose();
-    descriptionTextController1?.dispose();
-
-    descriptionFocusNode2?.dispose();
-    descriptionTextController2?.dispose();
+    cantidadFocusNode?.dispose();
+    cantidadTextController?.dispose();
   }
 }

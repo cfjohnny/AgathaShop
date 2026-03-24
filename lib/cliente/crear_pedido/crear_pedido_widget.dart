@@ -5,7 +5,6 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/form_field_controller.dart';
-import '/flutter_flow/random_data_util.dart' as random_data;
 import '/index.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -33,14 +32,11 @@ class _CrearPedidoWidgetState extends State<CrearPedidoWidget> {
     super.initState();
     _model = createModel(context, () => CrearPedidoModel());
 
-    _model.productNameTextController ??= TextEditingController();
-    _model.productNameFocusNode ??= FocusNode();
+    _model.linkTextController ??= TextEditingController();
+    _model.linkFocusNode ??= FocusNode();
 
-    _model.descriptionTextController1 ??= TextEditingController();
-    _model.descriptionFocusNode1 ??= FocusNode();
-
-    _model.descriptionTextController2 ??= TextEditingController();
-    _model.descriptionFocusNode2 ??= FocusNode();
+    _model.cantidadTextController ??= TextEditingController();
+    _model.cantidadFocusNode ??= FocusNode();
   }
 
   @override
@@ -323,15 +319,8 @@ class _CrearPedidoWidgetState extends State<CrearPedidoWidget> {
                             hoverColor: Colors.transparent,
                             highlightColor: Colors.transparent,
                             onTap: () async {
-                              context.pushNamed(
-                                InicioWidget.routeName,
-                                queryParameters: {
-                                  'estado': serializeParam(
-                                    '',
-                                    ParamType.String,
-                                  ),
-                                }.withoutNulls,
-                              );
+                              context
+                                  .pushNamed(VerificacionDeRolWidget.routeName);
                             },
                             child: Container(
                               width: double.infinity,
@@ -341,60 +330,43 @@ class _CrearPedidoWidgetState extends State<CrearPedidoWidget> {
                               ),
                               child: Padding(
                                 padding: EdgeInsets.all(8.0),
-                                child: InkWell(
-                                  splashColor: Colors.transparent,
-                                  focusColor: Colors.transparent,
-                                  hoverColor: Colors.transparent,
-                                  highlightColor: Colors.transparent,
-                                  onTap: () async {
-                                    if (scaffoldKey
-                                            .currentState!.isDrawerOpen ||
-                                        scaffoldKey
-                                            .currentState!.isEndDrawerOpen) {
-                                      Navigator.pop(context);
-                                    }
-                                  },
-                                  child: Row(
-                                    mainAxisSize: MainAxisSize.max,
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.center,
-                                    children: [
-                                      Icon(
-                                        Icons.home,
-                                        color: FlutterFlowTheme.of(context)
-                                            .primary,
-                                        size: 28.0,
-                                      ),
-                                      Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
-                                            12.0, 0.0, 0.0, 0.0),
-                                        child: Text(
-                                          'Inicio',
-                                          style: FlutterFlowTheme.of(context)
-                                              .bodyLarge
-                                              .override(
-                                                font:
-                                                    GoogleFonts.plusJakartaSans(
-                                                  fontWeight: FontWeight.w500,
-                                                  fontStyle:
-                                                      FlutterFlowTheme.of(
-                                                              context)
-                                                          .bodyLarge
-                                                          .fontStyle,
-                                                ),
-                                                color: Color(0xFF15161E),
-                                                fontSize: 16.0,
-                                                letterSpacing: 0.0,
+                                child: Row(
+                                  mainAxisSize: MainAxisSize.max,
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  children: [
+                                    Icon(
+                                      Icons.home,
+                                      color:
+                                          FlutterFlowTheme.of(context).primary,
+                                      size: 28.0,
+                                    ),
+                                    Padding(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                          12.0, 0.0, 0.0, 0.0),
+                                      child: Text(
+                                        'Inicio',
+                                        style: FlutterFlowTheme.of(context)
+                                            .bodyLarge
+                                            .override(
+                                              font: GoogleFonts.plusJakartaSans(
                                                 fontWeight: FontWeight.w500,
                                                 fontStyle:
                                                     FlutterFlowTheme.of(context)
                                                         .bodyLarge
                                                         .fontStyle,
                                               ),
-                                        ),
+                                              color: Color(0xFF15161E),
+                                              fontSize: 16.0,
+                                              letterSpacing: 0.0,
+                                              fontWeight: FontWeight.w500,
+                                              fontStyle:
+                                                  FlutterFlowTheme.of(context)
+                                                      .bodyLarge
+                                                      .fontStyle,
+                                            ),
                                       ),
-                                    ],
-                                  ),
+                                    ),
+                                  ],
                                 ),
                               ),
                             ),
@@ -957,218 +929,15 @@ class _CrearPedidoWidgetState extends State<CrearPedidoWidget> {
                                         mainAxisSize: MainAxisSize.max,
                                         children: [
                                           TextFormField(
-                                            controller: _model
-                                                .productNameTextController,
-                                            focusNode:
-                                                _model.productNameFocusNode,
+                                            controller:
+                                                _model.linkTextController,
+                                            focusNode: _model.linkFocusNode,
                                             autofocus: true,
                                             textCapitalization:
                                                 TextCapitalization.words,
                                             obscureText: false,
                                             decoration: InputDecoration(
-                                              labelText: 'Nombre del Producto',
-                                              labelStyle: FlutterFlowTheme.of(
-                                                      context)
-                                                  .headlineMedium
-                                                  .override(
-                                                    font:
-                                                        GoogleFonts.interTight(
-                                                      fontWeight:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .headlineMedium
-                                                              .fontWeight,
-                                                      fontStyle:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .headlineMedium
-                                                              .fontStyle,
-                                                    ),
-                                                    color: FlutterFlowTheme.of(
-                                                            context)
-                                                        .secondaryText,
-                                                    letterSpacing: 0.0,
-                                                    fontWeight:
-                                                        FlutterFlowTheme.of(
-                                                                context)
-                                                            .headlineMedium
-                                                            .fontWeight,
-                                                    fontStyle:
-                                                        FlutterFlowTheme.of(
-                                                                context)
-                                                            .headlineMedium
-                                                            .fontStyle,
-                                                  ),
-                                              hintStyle:
-                                                  FlutterFlowTheme.of(context)
-                                                      .labelMedium
-                                                      .override(
-                                                        font: GoogleFonts.inter(
-                                                          fontWeight:
-                                                              FlutterFlowTheme.of(
-                                                                      context)
-                                                                  .labelMedium
-                                                                  .fontWeight,
-                                                          fontStyle:
-                                                              FlutterFlowTheme.of(
-                                                                      context)
-                                                                  .labelMedium
-                                                                  .fontStyle,
-                                                        ),
-                                                        letterSpacing: 0.0,
-                                                        fontWeight:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .labelMedium
-                                                                .fontWeight,
-                                                        fontStyle:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .labelMedium
-                                                                .fontStyle,
-                                                      ),
-                                              errorStyle:
-                                                  FlutterFlowTheme.of(context)
-                                                      .bodyMedium
-                                                      .override(
-                                                        font: GoogleFonts.inter(
-                                                          fontWeight:
-                                                              FlutterFlowTheme.of(
-                                                                      context)
-                                                                  .bodyMedium
-                                                                  .fontWeight,
-                                                          fontStyle:
-                                                              FlutterFlowTheme.of(
-                                                                      context)
-                                                                  .bodyMedium
-                                                                  .fontStyle,
-                                                        ),
-                                                        color:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .error,
-                                                        fontSize: 12.0,
-                                                        letterSpacing: 0.0,
-                                                        fontWeight:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .bodyMedium
-                                                                .fontWeight,
-                                                        fontStyle:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .bodyMedium
-                                                                .fontStyle,
-                                                      ),
-                                              enabledBorder: OutlineInputBorder(
-                                                borderSide: BorderSide(
-                                                  color: FlutterFlowTheme.of(
-                                                          context)
-                                                      .alternate,
-                                                  width: 2.0,
-                                                ),
-                                                borderRadius:
-                                                    BorderRadius.circular(12.0),
-                                              ),
-                                              focusedBorder: OutlineInputBorder(
-                                                borderSide: BorderSide(
-                                                  color: FlutterFlowTheme.of(
-                                                          context)
-                                                      .primary,
-                                                  width: 2.0,
-                                                ),
-                                                borderRadius:
-                                                    BorderRadius.circular(12.0),
-                                              ),
-                                              errorBorder: OutlineInputBorder(
-                                                borderSide: BorderSide(
-                                                  color: FlutterFlowTheme.of(
-                                                          context)
-                                                      .error,
-                                                  width: 2.0,
-                                                ),
-                                                borderRadius:
-                                                    BorderRadius.circular(12.0),
-                                              ),
-                                              focusedErrorBorder:
-                                                  OutlineInputBorder(
-                                                borderSide: BorderSide(
-                                                  color: FlutterFlowTheme.of(
-                                                          context)
-                                                      .error,
-                                                  width: 2.0,
-                                                ),
-                                                borderRadius:
-                                                    BorderRadius.circular(12.0),
-                                              ),
-                                              filled: true,
-                                              fillColor:
-                                                  FlutterFlowTheme.of(context)
-                                                      .secondaryBackground,
-                                              contentPadding:
-                                                  EdgeInsetsDirectional
-                                                      .fromSTEB(16.0, 20.0,
-                                                          16.0, 20.0),
-                                            ),
-                                            style: FlutterFlowTheme.of(context)
-                                                .headlineMedium
-                                                .override(
-                                                  font: GoogleFonts.interTight(
-                                                    fontWeight:
-                                                        FlutterFlowTheme.of(
-                                                                context)
-                                                            .headlineMedium
-                                                            .fontWeight,
-                                                    fontStyle:
-                                                        FlutterFlowTheme.of(
-                                                                context)
-                                                            .headlineMedium
-                                                            .fontStyle,
-                                                  ),
-                                                  letterSpacing: 0.0,
-                                                  fontWeight:
-                                                      FlutterFlowTheme.of(
-                                                              context)
-                                                          .headlineMedium
-                                                          .fontWeight,
-                                                  fontStyle:
-                                                      FlutterFlowTheme.of(
-                                                              context)
-                                                          .headlineMedium
-                                                          .fontStyle,
-                                                ),
-                                            cursorColor:
-                                                FlutterFlowTheme.of(context)
-                                                    .primary,
-                                            validator: _model
-                                                .productNameTextControllerValidator
-                                                .asValidator(context),
-                                            inputFormatters: [
-                                              if (!isAndroid && !isiOS)
-                                                TextInputFormatter.withFunction(
-                                                    (oldValue, newValue) {
-                                                  return TextEditingValue(
-                                                    selection:
-                                                        newValue.selection,
-                                                    text: newValue.text
-                                                        .toCapitalization(
-                                                            TextCapitalization
-                                                                .words),
-                                                  );
-                                                }),
-                                            ],
-                                          ),
-                                          TextFormField(
-                                            controller: _model
-                                                .descriptionTextController1,
-                                            focusNode:
-                                                _model.descriptionFocusNode1,
-                                            autofocus: true,
-                                            textCapitalization:
-                                                TextCapitalization.words,
-                                            obscureText: false,
-                                            decoration: InputDecoration(
-                                              labelText: 'Enlace del Producto',
+                                              labelText: 'Link',
                                               labelStyle:
                                                   FlutterFlowTheme.of(context)
                                                       .labelLarge
@@ -1337,13 +1106,13 @@ class _CrearPedidoWidgetState extends State<CrearPedidoWidget> {
                                                           .fontStyle,
                                                 ),
                                             maxLines: 9,
-                                            minLines: 5,
-                                            keyboardType: TextInputType.url,
+                                            minLines: 1,
+                                            keyboardType: TextInputType.number,
                                             cursorColor:
                                                 FlutterFlowTheme.of(context)
                                                     .primary,
                                             validator: _model
-                                                .descriptionTextController1Validator
+                                                .linkTextControllerValidator
                                                 .asValidator(context),
                                             inputFormatters: [
                                               if (!isAndroid && !isiOS)
@@ -1361,10 +1130,9 @@ class _CrearPedidoWidgetState extends State<CrearPedidoWidget> {
                                             ],
                                           ),
                                           TextFormField(
-                                            controller: _model
-                                                .descriptionTextController2,
-                                            focusNode:
-                                                _model.descriptionFocusNode2,
+                                            controller:
+                                                _model.cantidadTextController,
+                                            focusNode: _model.cantidadFocusNode,
                                             autofocus: true,
                                             textCapitalization:
                                                 TextCapitalization.words,
@@ -1545,7 +1313,7 @@ class _CrearPedidoWidgetState extends State<CrearPedidoWidget> {
                                                 FlutterFlowTheme.of(context)
                                                     .primary,
                                             validator: _model
-                                                .descriptionTextController2Validator
+                                                .cantidadTextControllerValidator
                                                 .asValidator(context),
                                             inputFormatters: [
                                               if (!isAndroid && !isiOS)
@@ -1616,51 +1384,20 @@ class _CrearPedidoWidgetState extends State<CrearPedidoWidget> {
                                                       ),
                                             ),
                                           ),
-                                          StreamBuilder<List<TiendasRecord>>(
-                                            stream: queryTiendasRecord(
-                                              singleRecord: true,
-                                            ),
-                                            builder: (context, snapshot) {
-                                              // Customize what your widget looks like when it's loading.
-                                              if (!snapshot.hasData) {
-                                                return Center(
-                                                  child: SizedBox(
-                                                    width: 50.0,
-                                                    height: 50.0,
-                                                    child:
-                                                        CircularProgressIndicator(
-                                                      valueColor:
-                                                          AlwaysStoppedAnimation<
-                                                              Color>(
-                                                        FlutterFlowTheme.of(
-                                                                context)
-                                                            .primary,
-                                                      ),
-                                                    ),
-                                                  ),
-                                                );
-                                              }
-                                              List<TiendasRecord>
-                                                  choiceChipsTiendasRecordList =
-                                                  snapshot.data!;
-                                              // Return an empty Container when the item does not exist.
-                                              if (snapshot.data!.isEmpty) {
-                                                return Container();
-                                              }
-                                              final choiceChipsTiendasRecord =
-                                                  choiceChipsTiendasRecordList
-                                                          .isNotEmpty
-                                                      ? choiceChipsTiendasRecordList
-                                                          .first
-                                                      : null;
-
-                                              return FlutterFlowChoiceChips(
+                                          Container(
+                                            height: 43.8,
+                                            alignment:
+                                                AlignmentDirectional(0.0, 0.0),
+                                            child: Align(
+                                              alignment: AlignmentDirectional(
+                                                  0.0, 0.0),
+                                              child: FlutterFlowChoiceChips(
                                                 options: [
-                                                  ChipData('Shein'),
-                                                  ChipData('Temu'),
-                                                  ChipData('Amazon'),
-                                                  ChipData('Sephora'),
-                                                  ChipData('Otra')
+                                                  ChipData('SHEIN'),
+                                                  ChipData('TEMU'),
+                                                  ChipData('AMAZON'),
+                                                  ChipData('SEPHORA'),
+                                                  ChipData('OTRA')
                                                 ],
                                                 onChanged: (val) =>
                                                     safeSetState(() => _model
@@ -1690,7 +1427,7 @@ class _CrearPedidoWidgetState extends State<CrearPedidoWidget> {
                                                         color:
                                                             FlutterFlowTheme.of(
                                                                     context)
-                                                                .alternate,
+                                                                .info,
                                                         letterSpacing: 0.0,
                                                         fontWeight:
                                                             FlutterFlowTheme.of(
@@ -1706,20 +1443,18 @@ class _CrearPedidoWidgetState extends State<CrearPedidoWidget> {
                                                   iconColor:
                                                       FlutterFlowTheme.of(
                                                               context)
-                                                          .alternate,
-                                                  iconSize: 18.0,
+                                                          .info,
+                                                  iconSize: 16.0,
                                                   elevation: 0.0,
-                                                  borderColor:
-                                                      FlutterFlowTheme.of(
-                                                              context)
-                                                          .alternate,
-                                                  borderWidth: 2.0,
                                                   borderRadius:
                                                       BorderRadius.circular(
                                                           8.0),
                                                 ),
                                                 unselectedChipStyle: ChipStyle(
-                                                  backgroundColor: Colors.white,
+                                                  backgroundColor:
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .secondaryBackground,
                                                   textStyle: FlutterFlowTheme
                                                           .of(context)
                                                       .bodyMedium
@@ -1739,7 +1474,7 @@ class _CrearPedidoWidgetState extends State<CrearPedidoWidget> {
                                                         color:
                                                             FlutterFlowTheme.of(
                                                                     context)
-                                                                .primaryText,
+                                                                .secondaryText,
                                                         letterSpacing: 0.0,
                                                         fontWeight:
                                                             FlutterFlowTheme.of(
@@ -1756,11 +1491,8 @@ class _CrearPedidoWidgetState extends State<CrearPedidoWidget> {
                                                       FlutterFlowTheme.of(
                                                               context)
                                                           .secondaryText,
-                                                  iconSize: 18.0,
+                                                  iconSize: 16.0,
                                                   elevation: 0.0,
-                                                  borderColor:
-                                                      Color(0xFFE3E3E3),
-                                                  borderWidth: 2.0,
                                                   borderRadius:
                                                       BorderRadius.circular(
                                                           8.0),
@@ -1776,11 +1508,11 @@ class _CrearPedidoWidgetState extends State<CrearPedidoWidget> {
                                                         .choiceChipsValueController ??=
                                                     FormFieldController<
                                                         List<String>>(
-                                                  ['Otra'],
+                                                  ['OTRA'],
                                                 ),
                                                 wrapped: true,
-                                              );
-                                            },
+                                              ),
+                                            ),
                                           ),
                                           Padding(
                                             padding:
@@ -1792,17 +1524,13 @@ class _CrearPedidoWidgetState extends State<CrearPedidoWidget> {
                                                     .doc()
                                                     .set(
                                                         createPedidosRecordData(
-                                                      pedidoId: random_data
-                                                          .randomInteger(4, 6)
-                                                          .toString(),
                                                       usuarioId:
                                                           currentUserReference,
-                                                      linkProducto:
-                                                          double.tryParse(_model
-                                                              .descriptionTextController1
-                                                              .text),
+                                                      linkProducto: _model
+                                                          .linkTextController
+                                                          .text,
                                                       cantidad: int.tryParse(_model
-                                                          .descriptionTextController2
+                                                          .cantidadTextController
                                                           .text),
                                                       plataforma: _model
                                                           .choiceChipsValue,
@@ -1896,6 +1624,9 @@ class _CrearPedidoWidgetState extends State<CrearPedidoWidget> {
                                                     BorderRadius.circular(8.0),
                                               ),
                                             ),
+                                          ),
+                                          Container(
+                                            height: 200.0,
                                           ),
                                         ].divide(SizedBox(height: 12.0)),
                                       ),

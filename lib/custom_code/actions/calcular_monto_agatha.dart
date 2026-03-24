@@ -39,7 +39,9 @@ double calcularMontoAgatha(
   }
 
   // 🔹 Cálculo final
-  double resultado = monto * tipoCambio * comision;
+  double resultado = double.parse(
+    (monto * tipoCambio * comision).toStringAsFixed(2),
+  );
 
   return resultado;
 }

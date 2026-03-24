@@ -15,20 +15,10 @@ class PedidosRecord extends FirestoreRecord {
     _initializeFields();
   }
 
-  // "pedidoId" field.
-  String? _pedidoId;
-  String get pedidoId => _pedidoId ?? '';
-  bool hasPedidoId() => _pedidoId != null;
-
   // "usuarioId" field.
   DocumentReference? _usuarioId;
   DocumentReference? get usuarioId => _usuarioId;
   bool hasUsuarioId() => _usuarioId != null;
-
-  // "linkProducto" field.
-  double? _linkProducto;
-  double get linkProducto => _linkProducto ?? 0.0;
-  bool hasLinkProducto() => _linkProducto != null;
 
   // "cantidad" field.
   int? _cantidad;
@@ -90,10 +80,13 @@ class PedidosRecord extends FirestoreRecord {
   double get montoPendiente => _montoPendiente ?? 0.0;
   bool hasMontoPendiente() => _montoPendiente != null;
 
+  // "linkProducto" field.
+  String? _linkProducto;
+  String get linkProducto => _linkProducto ?? '';
+  bool hasLinkProducto() => _linkProducto != null;
+
   void _initializeFields() {
-    _pedidoId = snapshotData['pedidoId'] as String?;
     _usuarioId = snapshotData['usuarioId'] as DocumentReference?;
-    _linkProducto = castToType<double>(snapshotData['linkProducto']);
     _cantidad = castToType<int>(snapshotData['cantidad']);
     _estado = snapshotData['estado'] as String?;
     _comision = castToType<double>(snapshotData['comision']);
@@ -106,6 +99,7 @@ class PedidosRecord extends FirestoreRecord {
     _plataforma = snapshotData['plataforma'] as String?;
     _pagado = snapshotData['pagado'] as bool?;
     _montoPendiente = castToType<double>(snapshotData['montoPendiente']);
+    _linkProducto = snapshotData['linkProducto'] as String?;
   }
 
   static CollectionReference get collection =>
@@ -143,9 +137,7 @@ class PedidosRecord extends FirestoreRecord {
 }
 
 Map<String, dynamic> createPedidosRecordData({
-  String? pedidoId,
   DocumentReference? usuarioId,
-  double? linkProducto,
   int? cantidad,
   String? estado,
   double? comision,
@@ -158,12 +150,11 @@ Map<String, dynamic> createPedidosRecordData({
   String? plataforma,
   bool? pagado,
   double? montoPendiente,
+  String? linkProducto,
 }) {
   final firestoreData = mapToFirestore(
     <String, dynamic>{
-      'pedidoId': pedidoId,
       'usuarioId': usuarioId,
-      'linkProducto': linkProducto,
       'cantidad': cantidad,
       'estado': estado,
       'comision': comision,
@@ -176,6 +167,7 @@ Map<String, dynamic> createPedidosRecordData({
       'plataforma': plataforma,
       'pagado': pagado,
       'montoPendiente': montoPendiente,
+      'linkProducto': linkProducto,
     }.withoutNulls,
   );
 
@@ -187,9 +179,7 @@ class PedidosRecordDocumentEquality implements Equality<PedidosRecord> {
 
   @override
   bool equals(PedidosRecord? e1, PedidosRecord? e2) {
-    return e1?.pedidoId == e2?.pedidoId &&
-        e1?.usuarioId == e2?.usuarioId &&
-        e1?.linkProducto == e2?.linkProducto &&
+    return e1?.usuarioId == e2?.usuarioId &&
         e1?.cantidad == e2?.cantidad &&
         e1?.estado == e2?.estado &&
         e1?.comision == e2?.comision &&
@@ -201,14 +191,13 @@ class PedidosRecordDocumentEquality implements Equality<PedidosRecord> {
         e1?.envio == e2?.envio &&
         e1?.plataforma == e2?.plataforma &&
         e1?.pagado == e2?.pagado &&
-        e1?.montoPendiente == e2?.montoPendiente;
+        e1?.montoPendiente == e2?.montoPendiente &&
+        e1?.linkProducto == e2?.linkProducto;
   }
 
   @override
   int hash(PedidosRecord? e) => const ListEquality().hash([
-        e?.pedidoId,
         e?.usuarioId,
-        e?.linkProducto,
         e?.cantidad,
         e?.estado,
         e?.comision,
@@ -220,7 +209,8 @@ class PedidosRecordDocumentEquality implements Equality<PedidosRecord> {
         e?.envio,
         e?.plataforma,
         e?.pagado,
-        e?.montoPendiente
+        e?.montoPendiente,
+        e?.linkProducto
       ]);
 
   @override

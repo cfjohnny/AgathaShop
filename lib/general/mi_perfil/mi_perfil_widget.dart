@@ -66,7 +66,7 @@ class _MiPerfilWidgetState extends State<MiPerfilWidget> {
                         hoverColor: Colors.transparent,
                         highlightColor: Colors.transparent,
                         onTap: () async {
-                          context.safePop();
+                          context.pushNamed(VerificacionDeRolWidget.routeName);
                         },
                         child: Icon(
                           Icons.arrow_back_ios,

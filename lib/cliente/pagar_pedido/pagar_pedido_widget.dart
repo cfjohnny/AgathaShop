@@ -38,12 +38,10 @@ class _PagarPedidoWidgetState extends State<PagarPedidoWidget> {
     super.initState();
     _model = createModel(context, () => PagarPedidoModel());
 
-    _model.txtEmailTextController ??=
-        TextEditingController(text: 'Monto del Pago');
+    _model.txtEmailTextController ??= TextEditingController();
     _model.txtEmailFocusNode ??= FocusNode();
 
-    _model.txtNombreTextController ??=
-        TextEditingController(text: 'Número de Comprobante');
+    _model.txtNombreTextController ??= TextEditingController();
     _model.txtNombreFocusNode ??= FocusNode();
   }
 
@@ -197,10 +195,10 @@ class _PagarPedidoWidgetState extends State<PagarPedidoWidget> {
                                     },
                                     autofocus: false,
                                     enabled: true,
-                                    readOnly: true,
                                     obscureText: false,
                                     decoration: InputDecoration(
                                       isDense: true,
+                                      labelText: 'Monto en Colones',
                                       labelStyle: FlutterFlowTheme.of(context)
                                           .labelMedium
                                           .override(
@@ -224,7 +222,6 @@ class _PagarPedidoWidgetState extends State<PagarPedidoWidget> {
                                                     .labelMedium
                                                     .fontStyle,
                                           ),
-                                      hintText: 'TextField',
                                       hintStyle: FlutterFlowTheme.of(context)
                                           .labelMedium
                                           .override(
@@ -315,7 +312,7 @@ class _PagarPedidoWidgetState extends State<PagarPedidoWidget> {
                                             decimal: true),
                                     cursorColor: FlutterFlowTheme.of(context)
                                         .primaryText,
-                                    enableInteractiveSelection: true,
+                                    enableInteractiveSelection: false,
                                     validator: _model
                                         .txtEmailTextControllerValidator
                                         .asValidator(context),
@@ -343,6 +340,7 @@ class _PagarPedidoWidgetState extends State<PagarPedidoWidget> {
                                   obscureText: false,
                                   decoration: InputDecoration(
                                     isDense: true,
+                                    labelText: 'Número de Comprobante',
                                     labelStyle: FlutterFlowTheme.of(context)
                                         .labelMedium
                                         .override(
@@ -366,7 +364,6 @@ class _PagarPedidoWidgetState extends State<PagarPedidoWidget> {
                                                   .labelMedium
                                                   .fontStyle,
                                         ),
-                                    hintText: 'TextField',
                                     hintStyle: FlutterFlowTheme.of(context)
                                         .labelMedium
                                         .override(
@@ -448,7 +445,7 @@ class _PagarPedidoWidgetState extends State<PagarPedidoWidget> {
                                       ),
                                   cursorColor:
                                       FlutterFlowTheme.of(context).primaryText,
-                                  enableInteractiveSelection: true,
+                                  enableInteractiveSelection: false,
                                   validator: _model
                                       .txtNombreTextControllerValidator
                                       .asValidator(context),

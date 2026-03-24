@@ -1,5 +1,4 @@
 import '/auth/firebase_auth/auth_util.dart';
-import '/backend/backend.dart';
 import '/flutter_flow/flutter_flow_choice_chips.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
@@ -35,7 +34,16 @@ class _CalculadoraWidgetState extends State<CalculadoraWidget> {
     _model.textController1 ??= TextEditingController();
     _model.textFieldFocusNode1 ??= FocusNode();
 
-    _model.textController2 ??= TextEditingController();
+    _model.textController2 ??= TextEditingController(
+        text: valueOrDefault<String>(
+      formatNumber(
+        _model.resultado,
+        formatType: FormatType.decimal,
+        decimalType: DecimalType.commaDecimal,
+        currency: '₡',
+      ),
+      'Resultado',
+    ));
     _model.textFieldFocusNode2 ??= FocusNode();
   }
 
@@ -319,15 +327,7 @@ class _CalculadoraWidgetState extends State<CalculadoraWidget> {
                             hoverColor: Colors.transparent,
                             highlightColor: Colors.transparent,
                             onTap: () async {
-                              context.pushNamed(
-                                InicioWidget.routeName,
-                                queryParameters: {
-                                  'estado': serializeParam(
-                                    '',
-                                    ParamType.String,
-                                  ),
-                                }.withoutNulls,
-                              );
+                              context.pushNamed(InicioWidget.routeName);
                             },
                             child: Container(
                               width: double.infinity,
@@ -337,60 +337,43 @@ class _CalculadoraWidgetState extends State<CalculadoraWidget> {
                               ),
                               child: Padding(
                                 padding: EdgeInsets.all(8.0),
-                                child: InkWell(
-                                  splashColor: Colors.transparent,
-                                  focusColor: Colors.transparent,
-                                  hoverColor: Colors.transparent,
-                                  highlightColor: Colors.transparent,
-                                  onTap: () async {
-                                    if (scaffoldKey
-                                            .currentState!.isDrawerOpen ||
-                                        scaffoldKey
-                                            .currentState!.isEndDrawerOpen) {
-                                      Navigator.pop(context);
-                                    }
-                                  },
-                                  child: Row(
-                                    mainAxisSize: MainAxisSize.max,
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.center,
-                                    children: [
-                                      Icon(
-                                        Icons.home,
-                                        color: FlutterFlowTheme.of(context)
-                                            .primary,
-                                        size: 28.0,
-                                      ),
-                                      Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
-                                            12.0, 0.0, 0.0, 0.0),
-                                        child: Text(
-                                          'Inicio',
-                                          style: FlutterFlowTheme.of(context)
-                                              .bodyLarge
-                                              .override(
-                                                font:
-                                                    GoogleFonts.plusJakartaSans(
-                                                  fontWeight: FontWeight.w500,
-                                                  fontStyle:
-                                                      FlutterFlowTheme.of(
-                                                              context)
-                                                          .bodyLarge
-                                                          .fontStyle,
-                                                ),
-                                                color: Color(0xFF15161E),
-                                                fontSize: 16.0,
-                                                letterSpacing: 0.0,
+                                child: Row(
+                                  mainAxisSize: MainAxisSize.max,
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  children: [
+                                    Icon(
+                                      Icons.home,
+                                      color:
+                                          FlutterFlowTheme.of(context).primary,
+                                      size: 28.0,
+                                    ),
+                                    Padding(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                          12.0, 0.0, 0.0, 0.0),
+                                      child: Text(
+                                        'Inicio',
+                                        style: FlutterFlowTheme.of(context)
+                                            .bodyLarge
+                                            .override(
+                                              font: GoogleFonts.plusJakartaSans(
                                                 fontWeight: FontWeight.w500,
                                                 fontStyle:
                                                     FlutterFlowTheme.of(context)
                                                         .bodyLarge
                                                         .fontStyle,
                                               ),
-                                        ),
+                                              color: Color(0xFF15161E),
+                                              fontSize: 16.0,
+                                              letterSpacing: 0.0,
+                                              fontWeight: FontWeight.w500,
+                                              fontStyle:
+                                                  FlutterFlowTheme.of(context)
+                                                      .bodyLarge
+                                                      .fontStyle,
+                                            ),
                                       ),
-                                    ],
-                                  ),
+                                    ),
+                                  ],
                                 ),
                               ),
                             ),
@@ -405,15 +388,7 @@ class _CalculadoraWidgetState extends State<CalculadoraWidget> {
                             hoverColor: Colors.transparent,
                             highlightColor: Colors.transparent,
                             onTap: () async {
-                              context.pushNamed(
-                                HistorialWidget.routeName,
-                                queryParameters: {
-                                  'estado': serializeParam(
-                                    '',
-                                    ParamType.String,
-                                  ),
-                                }.withoutNulls,
-                              );
+                              context.pushNamed(HistorialWidget.routeName);
                             },
                             child: Container(
                               width: double.infinity,
@@ -914,7 +889,7 @@ class _CalculadoraWidgetState extends State<CalculadoraWidget> {
             alignment: AlignmentDirectional(0.0, -1.0),
             child: Container(
               constraints: BoxConstraints(
-                maxWidth: 1270.0,
+                maxWidth: MediaQuery.sizeOf(context).width * 0.95,
               ),
               decoration: BoxDecoration(),
               child: Padding(
@@ -970,129 +945,91 @@ class _CalculadoraWidgetState extends State<CalculadoraWidget> {
                                       .fontStyle,
                                 ),
                           ),
-                          StreamBuilder<List<TiendasRecord>>(
-                            stream: queryTiendasRecord(
-                              singleRecord: true,
-                            ),
-                            builder: (context, snapshot) {
-                              // Customize what your widget looks like when it's loading.
-                              if (!snapshot.hasData) {
-                                return Center(
-                                  child: SizedBox(
-                                    width: 50.0,
-                                    height: 50.0,
-                                    child: CircularProgressIndicator(
-                                      valueColor: AlwaysStoppedAnimation<Color>(
-                                        FlutterFlowTheme.of(context).primary,
-                                      ),
+                          FlutterFlowChoiceChips(
+                            options: [
+                              ChipData('Shein'),
+                              ChipData('Temu'),
+                              ChipData('Amazon'),
+                              ChipData('Sephora'),
+                              ChipData('Otra')
+                            ],
+                            onChanged: (val) => safeSetState(() =>
+                                _model.choiceChipsValue1 = val?.firstOrNull),
+                            selectedChipStyle: ChipStyle(
+                              backgroundColor:
+                                  FlutterFlowTheme.of(context).secondary,
+                              textStyle: FlutterFlowTheme.of(context)
+                                  .bodyMedium
+                                  .override(
+                                    font: GoogleFonts.inter(
+                                      fontWeight: FlutterFlowTheme.of(context)
+                                          .bodyMedium
+                                          .fontWeight,
+                                      fontStyle: FlutterFlowTheme.of(context)
+                                          .bodyMedium
+                                          .fontStyle,
                                     ),
+                                    color:
+                                        FlutterFlowTheme.of(context).alternate,
+                                    letterSpacing: 0.0,
+                                    fontWeight: FlutterFlowTheme.of(context)
+                                        .bodyMedium
+                                        .fontWeight,
+                                    fontStyle: FlutterFlowTheme.of(context)
+                                        .bodyMedium
+                                        .fontStyle,
                                   ),
-                                );
-                              }
-                              List<TiendasRecord> choiceChipsTiendasRecordList =
-                                  snapshot.data!;
-                              // Return an empty Container when the item does not exist.
-                              if (snapshot.data!.isEmpty) {
-                                return Container();
-                              }
-                              final choiceChipsTiendasRecord =
-                                  choiceChipsTiendasRecordList.isNotEmpty
-                                      ? choiceChipsTiendasRecordList.first
-                                      : null;
-
-                              return FlutterFlowChoiceChips(
-                                options: [
-                                  ChipData('Shein'),
-                                  ChipData('Temu'),
-                                  ChipData('Amazon'),
-                                  ChipData('Sephora'),
-                                  ChipData('Otra')
-                                ],
-                                onChanged: (val) => safeSetState(() => _model
-                                    .choiceChipsValue1 = val?.firstOrNull),
-                                selectedChipStyle: ChipStyle(
-                                  backgroundColor:
-                                      FlutterFlowTheme.of(context).secondary,
-                                  textStyle: FlutterFlowTheme.of(context)
-                                      .bodyMedium
-                                      .override(
-                                        font: GoogleFonts.inter(
-                                          fontWeight:
-                                              FlutterFlowTheme.of(context)
-                                                  .bodyMedium
-                                                  .fontWeight,
-                                          fontStyle:
-                                              FlutterFlowTheme.of(context)
-                                                  .bodyMedium
-                                                  .fontStyle,
-                                        ),
-                                        color: FlutterFlowTheme.of(context)
-                                            .alternate,
-                                        letterSpacing: 0.0,
-                                        fontWeight: FlutterFlowTheme.of(context)
-                                            .bodyMedium
-                                            .fontWeight,
-                                        fontStyle: FlutterFlowTheme.of(context)
-                                            .bodyMedium
-                                            .fontStyle,
-                                      ),
-                                  iconColor:
-                                      FlutterFlowTheme.of(context).alternate,
-                                  iconSize: 18.0,
-                                  elevation: 0.0,
-                                  borderColor:
-                                      FlutterFlowTheme.of(context).alternate,
-                                  borderWidth: 2.0,
-                                  borderRadius: BorderRadius.circular(8.0),
-                                ),
-                                unselectedChipStyle: ChipStyle(
-                                  backgroundColor: FlutterFlowTheme.of(context)
-                                      .primaryBackground,
-                                  textStyle: FlutterFlowTheme.of(context)
-                                      .bodyMedium
-                                      .override(
-                                        font: GoogleFonts.inter(
-                                          fontWeight:
-                                              FlutterFlowTheme.of(context)
-                                                  .bodyMedium
-                                                  .fontWeight,
-                                          fontStyle:
-                                              FlutterFlowTheme.of(context)
-                                                  .bodyMedium
-                                                  .fontStyle,
-                                        ),
-                                        color: FlutterFlowTheme.of(context)
-                                            .secondaryText,
-                                        letterSpacing: 0.0,
-                                        fontWeight: FlutterFlowTheme.of(context)
-                                            .bodyMedium
-                                            .fontWeight,
-                                        fontStyle: FlutterFlowTheme.of(context)
-                                            .bodyMedium
-                                            .fontStyle,
-                                      ),
-                                  iconColor: FlutterFlowTheme.of(context)
-                                      .secondaryText,
-                                  iconSize: 18.0,
-                                  elevation: 0.0,
-                                  borderColor:
-                                      FlutterFlowTheme.of(context).alternate,
-                                  borderWidth: 2.0,
-                                  borderRadius: BorderRadius.circular(8.0),
-                                ),
-                                chipSpacing: 8.0,
-                                rowSpacing: 8.0,
-                                multiselect: false,
-                                initialized: _model.choiceChipsValue1 != null,
-                                alignment: WrapAlignment.center,
-                                controller:
-                                    _model.choiceChipsValueController1 ??=
-                                        FormFieldController<List<String>>(
-                                  ['Otra'],
-                                ),
-                                wrapped: true,
-                              );
-                            },
+                              iconColor: FlutterFlowTheme.of(context).alternate,
+                              iconSize: 18.0,
+                              elevation: 0.0,
+                              borderColor:
+                                  FlutterFlowTheme.of(context).alternate,
+                              borderWidth: 2.0,
+                              borderRadius: BorderRadius.circular(8.0),
+                            ),
+                            unselectedChipStyle: ChipStyle(
+                              backgroundColor: FlutterFlowTheme.of(context)
+                                  .primaryBackground,
+                              textStyle: FlutterFlowTheme.of(context)
+                                  .bodyMedium
+                                  .override(
+                                    font: GoogleFonts.inter(
+                                      fontWeight: FlutterFlowTheme.of(context)
+                                          .bodyMedium
+                                          .fontWeight,
+                                      fontStyle: FlutterFlowTheme.of(context)
+                                          .bodyMedium
+                                          .fontStyle,
+                                    ),
+                                    color: FlutterFlowTheme.of(context)
+                                        .secondaryText,
+                                    letterSpacing: 0.0,
+                                    fontWeight: FlutterFlowTheme.of(context)
+                                        .bodyMedium
+                                        .fontWeight,
+                                    fontStyle: FlutterFlowTheme.of(context)
+                                        .bodyMedium
+                                        .fontStyle,
+                                  ),
+                              iconColor:
+                                  FlutterFlowTheme.of(context).secondaryText,
+                              iconSize: 18.0,
+                              elevation: 0.0,
+                              borderColor:
+                                  FlutterFlowTheme.of(context).alternate,
+                              borderWidth: 2.0,
+                              borderRadius: BorderRadius.circular(8.0),
+                            ),
+                            chipSpacing: 8.0,
+                            rowSpacing: 8.0,
+                            multiselect: false,
+                            initialized: _model.choiceChipsValue1 != null,
+                            alignment: WrapAlignment.center,
+                            controller: _model.choiceChipsValueController1 ??=
+                                FormFieldController<List<String>>(
+                              ['Otra'],
+                            ),
+                            wrapped: true,
                           ),
                           Padding(
                             padding: EdgeInsetsDirectional.fromSTEB(
@@ -1123,127 +1060,89 @@ class _CalculadoraWidgetState extends State<CalculadoraWidget> {
                                   ),
                             ),
                           ),
-                          StreamBuilder<List<TiendasRecord>>(
-                            stream: queryTiendasRecord(
-                              singleRecord: true,
-                            ),
-                            builder: (context, snapshot) {
-                              // Customize what your widget looks like when it's loading.
-                              if (!snapshot.hasData) {
-                                return Center(
-                                  child: SizedBox(
-                                    width: 50.0,
-                                    height: 50.0,
-                                    child: CircularProgressIndicator(
-                                      valueColor: AlwaysStoppedAnimation<Color>(
-                                        FlutterFlowTheme.of(context).primary,
-                                      ),
+                          FlutterFlowChoiceChips(
+                            options: [
+                              ChipData('USD'),
+                              ChipData('EUR'),
+                              ChipData('CRC')
+                            ],
+                            onChanged: (val) => safeSetState(() =>
+                                _model.choiceChipsValue2 = val?.firstOrNull),
+                            selectedChipStyle: ChipStyle(
+                              backgroundColor:
+                                  FlutterFlowTheme.of(context).secondary,
+                              textStyle: FlutterFlowTheme.of(context)
+                                  .bodyMedium
+                                  .override(
+                                    font: GoogleFonts.inter(
+                                      fontWeight: FlutterFlowTheme.of(context)
+                                          .bodyMedium
+                                          .fontWeight,
+                                      fontStyle: FlutterFlowTheme.of(context)
+                                          .bodyMedium
+                                          .fontStyle,
                                     ),
+                                    color:
+                                        FlutterFlowTheme.of(context).alternate,
+                                    letterSpacing: 0.0,
+                                    fontWeight: FlutterFlowTheme.of(context)
+                                        .bodyMedium
+                                        .fontWeight,
+                                    fontStyle: FlutterFlowTheme.of(context)
+                                        .bodyMedium
+                                        .fontStyle,
                                   ),
-                                );
-                              }
-                              List<TiendasRecord> choiceChipsTiendasRecordList =
-                                  snapshot.data!;
-                              // Return an empty Container when the item does not exist.
-                              if (snapshot.data!.isEmpty) {
-                                return Container();
-                              }
-                              final choiceChipsTiendasRecord =
-                                  choiceChipsTiendasRecordList.isNotEmpty
-                                      ? choiceChipsTiendasRecordList.first
-                                      : null;
-
-                              return FlutterFlowChoiceChips(
-                                options: [
-                                  ChipData('USD'),
-                                  ChipData('EUR'),
-                                  ChipData('CRC')
-                                ],
-                                onChanged: (val) => safeSetState(() => _model
-                                    .choiceChipsValue2 = val?.firstOrNull),
-                                selectedChipStyle: ChipStyle(
-                                  backgroundColor:
-                                      FlutterFlowTheme.of(context).secondary,
-                                  textStyle: FlutterFlowTheme.of(context)
-                                      .bodyMedium
-                                      .override(
-                                        font: GoogleFonts.inter(
-                                          fontWeight:
-                                              FlutterFlowTheme.of(context)
-                                                  .bodyMedium
-                                                  .fontWeight,
-                                          fontStyle:
-                                              FlutterFlowTheme.of(context)
-                                                  .bodyMedium
-                                                  .fontStyle,
-                                        ),
-                                        color: FlutterFlowTheme.of(context)
-                                            .alternate,
-                                        letterSpacing: 0.0,
-                                        fontWeight: FlutterFlowTheme.of(context)
-                                            .bodyMedium
-                                            .fontWeight,
-                                        fontStyle: FlutterFlowTheme.of(context)
-                                            .bodyMedium
-                                            .fontStyle,
-                                      ),
-                                  iconColor:
-                                      FlutterFlowTheme.of(context).alternate,
-                                  iconSize: 18.0,
-                                  elevation: 0.0,
-                                  borderColor:
-                                      FlutterFlowTheme.of(context).alternate,
-                                  borderWidth: 2.0,
-                                  borderRadius: BorderRadius.circular(8.0),
-                                ),
-                                unselectedChipStyle: ChipStyle(
-                                  backgroundColor: FlutterFlowTheme.of(context)
-                                      .primaryBackground,
-                                  textStyle: FlutterFlowTheme.of(context)
-                                      .bodyMedium
-                                      .override(
-                                        font: GoogleFonts.inter(
-                                          fontWeight:
-                                              FlutterFlowTheme.of(context)
-                                                  .bodyMedium
-                                                  .fontWeight,
-                                          fontStyle:
-                                              FlutterFlowTheme.of(context)
-                                                  .bodyMedium
-                                                  .fontStyle,
-                                        ),
-                                        color: FlutterFlowTheme.of(context)
-                                            .secondaryText,
-                                        letterSpacing: 0.0,
-                                        fontWeight: FlutterFlowTheme.of(context)
-                                            .bodyMedium
-                                            .fontWeight,
-                                        fontStyle: FlutterFlowTheme.of(context)
-                                            .bodyMedium
-                                            .fontStyle,
-                                      ),
-                                  iconColor: FlutterFlowTheme.of(context)
-                                      .secondaryText,
-                                  iconSize: 18.0,
-                                  elevation: 0.0,
-                                  borderColor:
-                                      FlutterFlowTheme.of(context).alternate,
-                                  borderWidth: 2.0,
-                                  borderRadius: BorderRadius.circular(8.0),
-                                ),
-                                chipSpacing: 8.0,
-                                rowSpacing: 8.0,
-                                multiselect: false,
-                                initialized: _model.choiceChipsValue2 != null,
-                                alignment: WrapAlignment.center,
-                                controller:
-                                    _model.choiceChipsValueController2 ??=
-                                        FormFieldController<List<String>>(
-                                  ['USD'],
-                                ),
-                                wrapped: true,
-                              );
-                            },
+                              iconColor: FlutterFlowTheme.of(context).alternate,
+                              iconSize: 18.0,
+                              elevation: 0.0,
+                              borderColor:
+                                  FlutterFlowTheme.of(context).alternate,
+                              borderWidth: 2.0,
+                              borderRadius: BorderRadius.circular(8.0),
+                            ),
+                            unselectedChipStyle: ChipStyle(
+                              backgroundColor: FlutterFlowTheme.of(context)
+                                  .primaryBackground,
+                              textStyle: FlutterFlowTheme.of(context)
+                                  .bodyMedium
+                                  .override(
+                                    font: GoogleFonts.inter(
+                                      fontWeight: FlutterFlowTheme.of(context)
+                                          .bodyMedium
+                                          .fontWeight,
+                                      fontStyle: FlutterFlowTheme.of(context)
+                                          .bodyMedium
+                                          .fontStyle,
+                                    ),
+                                    color: FlutterFlowTheme.of(context)
+                                        .secondaryText,
+                                    letterSpacing: 0.0,
+                                    fontWeight: FlutterFlowTheme.of(context)
+                                        .bodyMedium
+                                        .fontWeight,
+                                    fontStyle: FlutterFlowTheme.of(context)
+                                        .bodyMedium
+                                        .fontStyle,
+                                  ),
+                              iconColor:
+                                  FlutterFlowTheme.of(context).secondaryText,
+                              iconSize: 18.0,
+                              elevation: 0.0,
+                              borderColor:
+                                  FlutterFlowTheme.of(context).alternate,
+                              borderWidth: 2.0,
+                              borderRadius: BorderRadius.circular(8.0),
+                            ),
+                            chipSpacing: 8.0,
+                            rowSpacing: 8.0,
+                            multiselect: false,
+                            initialized: _model.choiceChipsValue2 != null,
+                            alignment: WrapAlignment.center,
+                            controller: _model.choiceChipsValueController2 ??=
+                                FormFieldController<List<String>>(
+                              ['USD'],
+                            ),
+                            wrapped: true,
                           ),
                           Padding(
                             padding: EdgeInsetsDirectional.fromSTEB(
@@ -1282,7 +1181,7 @@ class _CalculadoraWidgetState extends State<CalculadoraWidget> {
                                 padding: EdgeInsetsDirectional.fromSTEB(
                                     0.0, 15.0, 0.0, 0.0),
                                 child: Container(
-                                  width: 200.0,
+                                  width: MediaQuery.sizeOf(context).width * 0.4,
                                   child: TextFormField(
                                     controller: _model.textController1,
                                     focusNode: _model.textFieldFocusNode1,
@@ -1392,6 +1291,7 @@ class _CalculadoraWidgetState extends State<CalculadoraWidget> {
                                                     .bodyMedium
                                                     .fontStyle,
                                           ),
+                                          fontSize: 12.0,
                                           letterSpacing: 0.0,
                                           fontWeight:
                                               FlutterFlowTheme.of(context)
@@ -1412,9 +1312,9 @@ class _CalculadoraWidgetState extends State<CalculadoraWidget> {
                               ),
                               Padding(
                                 padding: EdgeInsetsDirectional.fromSTEB(
-                                    0.0, 15.0, 0.0, 0.0),
+                                    0.0, 15.0, 10.0, 0.0),
                                 child: Container(
-                                  width: 200.0,
+                                  width: MediaQuery.sizeOf(context).width * 0.4,
                                   child: TextFormField(
                                     controller: _model.textController2,
                                     focusNode: _model.textFieldFocusNode2,
@@ -1450,16 +1350,6 @@ class _CalculadoraWidgetState extends State<CalculadoraWidget> {
                                                     .labelMedium
                                                     .fontStyle,
                                           ),
-                                      hintText: valueOrDefault<String>(
-                                        formatNumber(
-                                          _model.resultado,
-                                          formatType: FormatType.decimal,
-                                          decimalType:
-                                              DecimalType.periodDecimal,
-                                          currency: '₡',
-                                        ),
-                                        'Resultado',
-                                      ),
                                       hintStyle: FlutterFlowTheme.of(context)
                                           .labelMedium
                                           .override(
@@ -1534,6 +1424,7 @@ class _CalculadoraWidgetState extends State<CalculadoraWidget> {
                                                     .bodyMedium
                                                     .fontStyle,
                                           ),
+                                          fontSize: 12.0,
                                           letterSpacing: 0.0,
                                           fontWeight:
                                               FlutterFlowTheme.of(context)
@@ -1564,6 +1455,11 @@ class _CalculadoraWidgetState extends State<CalculadoraWidget> {
                                   double.parse(_model.textController1.text),
                                   _model.choiceChipsValue2!,
                                   _model.choiceChipsValue1!,
+                                );
+                                _model.textController2?.text =
+                                    valueOrDefault<String>(
+                                  _model.resultado?.toString(),
+                                  'Error',
                                 );
 
                                 safeSetState(() {});

@@ -23,10 +23,10 @@ class EditarPerfilComponentModel
   FocusNode? txtNombreFocusNode2;
   TextEditingController? txtNombreTextController2;
   String? Function(BuildContext, String?)? txtNombreTextController2Validator;
-  // State field(s) for txtNumero widget.
-  FocusNode? txtNumeroFocusNode;
-  TextEditingController? txtNumeroTextController;
-  String? Function(BuildContext, String?)? txtNumeroTextControllerValidator;
+  // State field(s) for txtNombre widget.
+  FocusNode? txtNombreFocusNode3;
+  TextEditingController? txtNombreTextController3;
+  String? Function(BuildContext, String?)? txtNombreTextController3Validator;
 
   @override
   void initState(BuildContext context) {}
@@ -42,7 +42,7 @@ class EditarPerfilComponentModel
     txtNombreFocusNode2?.dispose();
     txtNombreTextController2?.dispose();
 
-    txtNumeroFocusNode?.dispose();
-    txtNumeroTextController?.dispose();
+    txtNombreFocusNode3?.dispose();
+    txtNombreTextController3?.dispose();
   }
 }
