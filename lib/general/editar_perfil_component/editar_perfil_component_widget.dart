@@ -41,26 +41,26 @@ class _EditarPerfilComponentWidgetState
     ));
     _model.txtEmailFocusNode ??= FocusNode();
 
-    _model.txtNombreTextController1 ??= TextEditingController(
+    _model.txtNombreTextController ??= TextEditingController(
         text: valueOrDefault<String>(
       currentUserDisplayName,
       'Sin Nombre',
     ));
-    _model.txtNombreFocusNode1 ??= FocusNode();
+    _model.txtNombreFocusNode ??= FocusNode();
 
-    _model.txtNombreTextController2 ??= TextEditingController(
+    _model.txtDireccionTextController ??= TextEditingController(
         text: valueOrDefault<String>(
       valueOrDefault(currentUserDocument?.direccion, ''),
       'Sin Dirección',
     ));
-    _model.txtNombreFocusNode2 ??= FocusNode();
+    _model.txtDireccionFocusNode ??= FocusNode();
 
-    _model.txtNombreTextController3 ??= TextEditingController(
+    _model.txtTelefonoTextController ??= TextEditingController(
         text: valueOrDefault<String>(
       currentPhoneNumber,
       'Sin Número de Teléfono',
     ));
-    _model.txtNombreFocusNode3 ??= FocusNode();
+    _model.txtTelefonoFocusNode ??= FocusNode();
   }
 
   @override
@@ -78,8 +78,6 @@ class _EditarPerfilComponentWidgetState
       decoration: BoxDecoration(
         color: FlutterFlowTheme.of(context).secondaryBackground,
         borderRadius: BorderRadius.only(
-          bottomLeft: Radius.circular(0.0),
-          bottomRight: Radius.circular(0.0),
           topLeft: Radius.circular(16.0),
           topRight: Radius.circular(16.0),
         ),
@@ -412,8 +410,8 @@ class _EditarPerfilComponentWidgetState
                                 builder: (context) => Container(
                                   width: 200.0,
                                   child: TextFormField(
-                                    controller: _model.txtNombreTextController1,
-                                    focusNode: _model.txtNombreFocusNode1,
+                                    controller: _model.txtNombreTextController,
+                                    focusNode: _model.txtNombreFocusNode,
                                     autofocus: false,
                                     enabled: true,
                                     obscureText: false,
@@ -533,7 +531,7 @@ class _EditarPerfilComponentWidgetState
                                         .primaryText,
                                     enableInteractiveSelection: true,
                                     validator: _model
-                                        .txtNombreTextController1Validator
+                                        .txtNombreTextControllerValidator
                                         .asValidator(context),
                                   ),
                                 ),
@@ -553,8 +551,9 @@ class _EditarPerfilComponentWidgetState
                                 builder: (context) => Container(
                                   width: 200.0,
                                   child: TextFormField(
-                                    controller: _model.txtNombreTextController2,
-                                    focusNode: _model.txtNombreFocusNode2,
+                                    controller:
+                                        _model.txtDireccionTextController,
+                                    focusNode: _model.txtDireccionFocusNode,
                                     autofocus: false,
                                     enabled: true,
                                     obscureText: false,
@@ -673,7 +672,7 @@ class _EditarPerfilComponentWidgetState
                                         .primaryText,
                                     enableInteractiveSelection: true,
                                     validator: _model
-                                        .txtNombreTextController2Validator
+                                        .txtDireccionTextControllerValidator
                                         .asValidator(context),
                                   ),
                                 ),
@@ -693,14 +692,15 @@ class _EditarPerfilComponentWidgetState
                                 builder: (context) => Container(
                                   width: 200.0,
                                   child: TextFormField(
-                                    controller: _model.txtNombreTextController3,
-                                    focusNode: _model.txtNombreFocusNode3,
+                                    controller:
+                                        _model.txtTelefonoTextController,
+                                    focusNode: _model.txtTelefonoFocusNode,
                                     autofocus: false,
                                     enabled: true,
                                     obscureText: false,
                                     decoration: InputDecoration(
                                       isDense: true,
-                                      labelText: 'Dirección',
+                                      labelText: 'Teléfono',
                                       labelStyle: FlutterFlowTheme.of(context)
                                           .labelMedium
                                           .override(
@@ -813,7 +813,7 @@ class _EditarPerfilComponentWidgetState
                                         .primaryText,
                                     enableInteractiveSelection: true,
                                     validator: _model
-                                        .txtNombreTextController3Validator
+                                        .txtTelefonoTextControllerValidator
                                         .asValidator(context),
                                   ),
                                 ),
@@ -874,7 +874,7 @@ class _EditarPerfilComponentWidgetState
                                 await currentUserReference!
                                     .update(createUserRecordData(
                                   displayName: valueOrDefault<String>(
-                                    _model.txtNombreTextController1.text,
+                                    _model.txtNombreTextController.text,
                                     'Sin Nombre de Usuario',
                                   ),
                                   photoUrl: valueOrDefault<String>(
@@ -892,9 +892,9 @@ class _EditarPerfilComponentWidgetState
                                     'https://firebasestorage.googleapis.com/v0/b/agatha-g1.firebasestorage.app/o/imagenes%2FLogoAgatha.png?alt=media&token=45db8318-d2e6-4a05-a354-7eaa3170bc02',
                                   ),
                                   phoneNumber:
-                                      _model.txtNombreTextController3.text,
+                                      _model.txtTelefonoTextController.text,
                                   direccion:
-                                      _model.txtNombreTextController3.text,
+                                      _model.txtDireccionTextController.text,
                                 ));
                                 await showDialog(
                                   context: context,

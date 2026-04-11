@@ -16,17 +16,17 @@ class EditarPerfilComponentModel
   TextEditingController? txtEmailTextController;
   String? Function(BuildContext, String?)? txtEmailTextControllerValidator;
   // State field(s) for txtNombre widget.
-  FocusNode? txtNombreFocusNode1;
-  TextEditingController? txtNombreTextController1;
-  String? Function(BuildContext, String?)? txtNombreTextController1Validator;
-  // State field(s) for txtNombre widget.
-  FocusNode? txtNombreFocusNode2;
-  TextEditingController? txtNombreTextController2;
-  String? Function(BuildContext, String?)? txtNombreTextController2Validator;
-  // State field(s) for txtNombre widget.
-  FocusNode? txtNombreFocusNode3;
-  TextEditingController? txtNombreTextController3;
-  String? Function(BuildContext, String?)? txtNombreTextController3Validator;
+  FocusNode? txtNombreFocusNode;
+  TextEditingController? txtNombreTextController;
+  String? Function(BuildContext, String?)? txtNombreTextControllerValidator;
+  // State field(s) for txtDireccion widget.
+  FocusNode? txtDireccionFocusNode;
+  TextEditingController? txtDireccionTextController;
+  String? Function(BuildContext, String?)? txtDireccionTextControllerValidator;
+  // State field(s) for txtTelefono widget.
+  FocusNode? txtTelefonoFocusNode;
+  TextEditingController? txtTelefonoTextController;
+  String? Function(BuildContext, String?)? txtTelefonoTextControllerValidator;
 
   @override
   void initState(BuildContext context) {}
@@ -36,13 +36,13 @@ class EditarPerfilComponentModel
     txtEmailFocusNode?.dispose();
     txtEmailTextController?.dispose();
 
-    txtNombreFocusNode1?.dispose();
-    txtNombreTextController1?.dispose();
+    txtNombreFocusNode?.dispose();
+    txtNombreTextController?.dispose();
 
-    txtNombreFocusNode2?.dispose();
-    txtNombreTextController2?.dispose();
+    txtDireccionFocusNode?.dispose();
+    txtDireccionTextController?.dispose();
 
-    txtNombreFocusNode3?.dispose();
-    txtNombreTextController3?.dispose();
+    txtTelefonoFocusNode?.dispose();
+    txtTelefonoTextController?.dispose();
   }
 }

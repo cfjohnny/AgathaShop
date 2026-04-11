@@ -1,9 +1,9 @@
 import '/flutter_flow/flutter_flow_util.dart';
 import '/index.dart';
-import 'home_admin_widget.dart' show HomeAdminWidget;
+import 'admin_comisiones_widget.dart' show AdminComisionesWidget;
 import 'package:flutter/material.dart';
 
-class HomeAdminModel extends FlutterFlowModel<HomeAdminWidget> {
+class AdminComisionesModel extends FlutterFlowModel<AdminComisionesWidget> {
   @override
   void initState(BuildContext context) {}
 

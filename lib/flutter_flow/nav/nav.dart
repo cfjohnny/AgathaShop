@@ -164,6 +164,87 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           name: CalculadoraWidget.routeName,
           path: CalculadoraWidget.routePath,
           builder: (context, params) => CalculadoraWidget(),
+        ),
+        FFRoute(
+          name: GestionClientesWidget.routeName,
+          path: GestionClientesWidget.routePath,
+          builder: (context, params) => GestionClientesWidget(),
+        ),
+        FFRoute(
+          name: AdminComisionesWidget.routeName,
+          path: AdminComisionesWidget.routePath,
+          builder: (context, params) => AdminComisionesWidget(),
+        ),
+        FFRoute(
+          name: PedidosActivosAdminWidget.routeName,
+          path: PedidosActivosAdminWidget.routePath,
+          builder: (context, params) => PedidosActivosAdminWidget(
+            estado: params.getParam(
+              'estado',
+              ParamType.String,
+            ),
+          ),
+        ),
+        FFRoute(
+          name: EditarComisionesWidget.routeName,
+          path: EditarComisionesWidget.routePath,
+          asyncParams: {
+            'tiendaDoc': getDoc(['tiendas'], TiendasRecord.fromSnapshot),
+          },
+          builder: (context, params) => EditarComisionesWidget(
+            tiendaDoc: params.getParam(
+              'tiendaDoc',
+              ParamType.Document,
+            ),
+          ),
+        ),
+        FFRoute(
+          name: AdminTipoCambioWidget.routeName,
+          path: AdminTipoCambioWidget.routePath,
+          builder: (context, params) => AdminTipoCambioWidget(),
+        ),
+        FFRoute(
+          name: EditarTipoCambioWidget.routeName,
+          path: EditarTipoCambioWidget.routePath,
+          asyncParams: {
+            'tipoCambioDoc':
+                getDoc(['tipoCambio'], TipoCambioRecord.fromSnapshot),
+          },
+          builder: (context, params) => EditarTipoCambioWidget(
+            tipoCambioDoc: params.getParam(
+              'tipoCambioDoc',
+              ParamType.Document,
+            ),
+          ),
+        ),
+        FFRoute(
+          name: PedidosActivosAdminCopyWidget.routeName,
+          path: PedidosActivosAdminCopyWidget.routePath,
+          builder: (context, params) => PedidosActivosAdminCopyWidget(
+            estado: params.getParam(
+              'estado',
+              ParamType.String,
+            ),
+          ),
+        ),
+        FFRoute(
+          name: ActualizarPedidoAdminWidget.routeName,
+          path: ActualizarPedidoAdminWidget.routePath,
+          asyncParams: {
+            'detallePedido': getDoc(['pedidos'], PedidosRecord.fromSnapshot),
+          },
+          builder: (context, params) => ActualizarPedidoAdminWidget(
+            detallePedido: params.getParam(
+              'detallePedido',
+              ParamType.Document,
+            ),
+            idDetallePedido: params.getParam(
+              'idDetallePedido',
+              ParamType.DocumentReference,
+              isList: false,
+              collectionNamePath: ['pedidos'],
+            ),
+          ),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );
